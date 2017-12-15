@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>API Project</title>
+        
+        <style>
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.2em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            div { border: 2px solid black; margin: 4px; border-radius: 5px; background-color: #dbf4ff;}
+        </style>
+        
+    </head>
+    <body>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <center><h1>Failed Health Inspections</h1></center><hr>
+       <center><p>This app is a list of all the failed health inspections in the city of Chicago. The facility type, address, risk level, and violations are all listed. Click the button below to view.</p></center>
+        <center><button type="button" class="btn btn-primary btn-block btn-lg">Failed Inspections</button></center>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+            
+        <!--Map-->
+        <hr><center>
+                  <p style="margin-bottom:3px"><a href="https://data.cityofchicago.org/Health-Human-Services/Failed-Food-Inspections/gv8u-682g" target="_blank" style="font-size:12px;font-weight:bold;text-decoration:none;color:#333333;font-family:arial;">Failed Food Inspections</a></p>
+                  <iframe width="600px" title="Failed Food Inspections" height="400px" src="https://data.cityofchicago.org/w/gv8u-682g/3q3f-6823?cur=iYN7GWzEGpN&from=root" frameborder="0"scrolling="no"><a href="https://data.cityofchicago.org/Health-Human-Services/Failed-Food-Inspections/gv8u-682g" title="Failed Food Inspections" target="_blank">Failed Food Inspections</a></iframe>
+        </center><hr>
+            
+            
+        <script>
+                
+                var url = 'https://data.cityofchicago.org/resource/cwig-ma7x.json';
+                
+            $(
+                $("button").click(function(){
+                
+                        $.getJSON(url)
+                    .done(function(data){
+                            $.each(data, function(index, value){
+                            if ((value.results == "Fail") && (value.facility_type != "undefined"))
+                                {
+                              var html = "<div class='panel panel-primary' style='background-color: #e8f0ff;'><h1 class='panel-heading'>" + value.dba_name + "</h1>" +
+                                            "<p class='panel-body'><strong>Facility Type:</strong> " + value.facility_type + "<br>" +
+                                            "<strong>Address:</strong> " + value.address + "<br>" +
+                                            "<strong>Risk Level:</strong> " + value.risk + "<br>" +
+                                            "<strong>Violations:</strong> <small><small>" + value.violations + "</small></small><br>" +
+                                            "</p>" +
+                                            "</div>";
+                                }          
+                            $("body").append(html);
+                            });
+                    });
+                
+                })
+                
+            );
+                
+            </script>
+    </body>
+</html>

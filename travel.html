@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Travel</title>
+        <style>
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Expanded');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+#header{color:#5000ff;
+    font-family: Oswald;
+}
+p{color:#00d8ff;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+ul{
+    color:#15a85a;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+ol{
+    color:#15a85a;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+body{
+    background-color:#ddffff;
+}
+
+</style>
+
+
+<!--jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#image").hide().fadeIn("slow");
+        $("#countries").animate({left: '250px'});
+        $("#header").click(function(){
+            $(this).animate({width: '+=150px'});
+        });
+        $("li").click(function(){
+            $(this).css({"color": "#ef6300"})
+        });
+        
+    });
+</script>
+<!---->
+
+
+
+
+
+    </head>
+    <body>
+        <h1 id="header"><center><b>Travel</b></center></h1>
+        <p><center><a href="aboutme.html">Home </a> | <a href="science.html"> Science</a></center></p>
+        <hr>
+        <center><img id="image" src="https://media.cntraveler.com/photos/57067c1e9adc6caf5afe3f4c/master/pass/plane-landing-cr-getty-sb10062851ai-001.jpg" width=500px height=350px></center>
+        <p>I've lived in Chicago my whole life, so I love to travel when I can. I've been to:</p>
+        <ul id="countries">
+            <li>Canada</li>
+            <li>Mexico</li>
+            <li>England</li>
+            <li>France</li>
+            <li>Italy</li>
+            <li>Jamiaca</li>
+            <li>Cuba</li>
+        </ul>
+        <p>I'm hoping to go to more countries in Europe and go somewhere in Asia or Latin America soon. I may also consider studying abroad when I'm in college.<br><br><b>Real-world connections:</b></p>
+        <ol>
+            <li>Travelling exposes you to different cultures, lifestyles, history, etc. outside of your home country. We're lucky to have such a massive and diverse planet to explore.</li>
+            <li>Experiencing different political systems in action allows you to see their pros and cons first-hand. It can give you a new perspective on world politics.</li>
+            <li>Travelling south over winter or spring break is a great way to escape harsh Chicago winters.</li>
+            <li>Travelling with a group allows you to build new friendships and connections with people who are also interested in travel or a specific country.</li>
+            <li>If you're looking to visit another country, there are a lot of helpful online resources to use. I recommend <a href="https://www.google.com/flights/">Google Flights</a> for flight information and price tracking.</li>
+        </ol>
+    </body>
+</html>

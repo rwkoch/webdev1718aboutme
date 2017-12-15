@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Science</title>
+        <style>
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Expanded');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+#header{color:#5000ff;
+    font-family: Oswald;
+}
+p{color:#00d8ff;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+ul{
+    color:#15a85a;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+ol{
+    color:#15a85a;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+body{
+    background-color:#ddffff;
+}
+
+</style>
+
+
+<!--jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $(".image").hide().fadeIn("slow");
+         $("#header").click(function(){
+            $(this).animate({width: '+=150px'});
+         });
+        
+        
+    });
+</script>
+<!---->
+
+
+
+
+    </head>
+    <body>
+        <h1 id="header"><center><b>Science</b></center></h1>
+        <p><center><a href="aboutme.html">Home </a> |  <a href="travel.html"> Travel</a></center></p>
+        <hr>
+        
+        <p>Science courses I've taken at Lane:</p>
+        <ul>
+            <li>Biology</li>
+            <img class="image" src="http://www.queensbiology.com/dna-biology1.jpg" width=500 height=300>
+            <p>I really enjoyed biology back in 7th grade. It was very interesting and not too challenging.</p>
+            
+            <li>Chemistry</li>
+            <img class="image" src="https://vignette3.wikia.nocookie.net/powerlisting/images/b/b3/Chemical-science.jpg/revision/latest?cb=20170514083542" width=500 height=350>
+            <p>Chemistry was much more challenging than bio, but I still found it interesting.</p>
+            
+            <li>AP Environmental Science</li>
+            <img class="image" src="https://inhabitat.com/wp-content/blogs.dir/1/files/2017/04/Renewable-Energy.jpg" width=500 height=350>
+            <p>APES was really cool becuase it connects to many different environmental movements and arguments that are happening right now.
+            Learning the facts about climate change encouraged me to think about the future of energy production and humans.</p>
+        </ul>
+        <p>This year, I'm taking AP Physics. I haven't developed a strong opinion yet, but I do enjoy the algebra-based aspects of it. <br><br><b>Real-world connections:</b></p>
+        <ol>
+            <li>Science gives you a new perspective on how the world works. Biology, for example, gave me a new appreciation for genetics and how organisms function.</li>
+            <li>Chemistry gives you a deeper understanding of what makes up the world around us and how different substances interact.</li>
+            <li>Environmental Science is very relevant to current events and science arguments. We learn the facts about climate change, fossil fuels, and alternative energy sources, as well as the validity of different arguments about the climate.</li>
+            <li>If you want to read about all the science courses, go to Lane's <a href="http://www.lanetech.org/">Course Catalog</a> under Academics.</li>
+            <li>If you want details about the AP Science courses, visit <a href="https://apstudent.collegeboard.org/apcourse">AP Student</a>.</li>
+        </ol>
+        
+    </body>
+</html>

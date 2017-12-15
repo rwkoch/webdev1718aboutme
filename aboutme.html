@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+<meta charset="utf-8">
+<title>About me</title>
+<style>
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Expanded');
+@import url('https://fonts.googleapis.com/css?family=Oswald');
+#header{color:#5000ff;
+    font-family: Oswald;
+}
+#thinBlueBorder{
+    border-color:#7700ff;
+    border-width:5px;
+    border-style:solid;
+}
+p{color:#00d8ff;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+ul{
+    color:#15a85a;
+    font-family: 'Encode Sans Expanded', sans-serif;
+}
+body{
+    background-color:#ddffff;
+}
+
+</style>
+
+
+<!--jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $("#header").css({"font-size": "200%"});
+         $("#header").click(function(){
+            $(this).animate({width: '+=150px'});
+         });
+        $("#interests").css({"background-color": "#b4caed"});
+        $(".description").css({"color": "#625dea"});
+        $("img").click(function(){
+            $(this).fadeOut();
+        })
+        
+        
+    });
+</script>
+<!---->
+
+
+</head>
+
+<body>
+<h1 id="header"><b><center>About me</center></b></h1>
+<p><center><a href="travel.html">Travel </a> |  <a href="science.html"> Science</a></center></p>
+
+<hr>
+<p>Welcome to my About Me website! Here's some background info about me: <br> I'm Robert Koch, and this is my fourth year at Lane (I can't believe it's been that long already).
+I'm only a sophmore this year, since I'm a former LTAC. My family has lived in Chicago my whole life, though my extnded family lives in New York and Boston, and I visit them often.
+My three interests are travelling, science, and video games, which you can read more about below.</p>
+<center><img id="thinBlueBorder" src="http://www.fourseasons.com/content/dam/fourseasons/images/web/CFS/CFS_702_aspect16x9.jpg/jcr:content/renditions/cq5dam.web.637.358.jpeg"></center>
+
+<div id="interests">
+<h2 id="header"><u>Interests</u></h2>
+<ul>
+    <a href="travel.html"><li>travel</li></a><p class="description">I love to travel and experience new countries and cultures. So far I've been to 7 different countries. Click the link above to visit my Travel page.</p>
+    <a href="science.html"><li>science</li></a><p class="description">Science is one of my favorite subjects in school. I've taken biology, chemistry, and environmental science so far. Click the link above to visit my Science page.</p>
+    <li>video games</li><p class="description">I enjoy playing video games in my free time. The genres I enjoy include RPGs, adventure, strategy, etc.</p>
+</ul>
+</div>
+
+
+<body>
