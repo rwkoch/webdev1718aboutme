@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Charts API</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        
+    <script type="text/javascript">
+    
+    var carArray = new Array();
+    var numberArray = new Array();
+    
+      google.charts.load('current', {'packages':['corechart']});
+
+      google.charts.setOnLoadCallback(drawChart);
+      
+      function drawChart() {
+          
+          $.ajax({
+          url: "https://data.cityofchicago.org/resource/suj7-cg3j.json?$select=vehicle_make_model,COUNT(vehicle_make_model)&$group=vehicle_make_model",
+          dataType: "json",
+          data: "",
+          async: false,
+          
+          success: function(data){
+              for (var i = 0; i < data.length; i++)
+              {
+                  numberArray.push(data[i].COUNT_vehicle_make_model);
+                  carArray.push(data[i].vehicle_make_model);
+                  
+              }
+              
+          }
+          
+          });
+                
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'make/model');
+        data.addColumn('number', 'number of cars');
+        
+        for(var i=0; i<carArray.length; i++){
+            data.addRow([carArray[i], parseFloat(numberArray[i])]);
+        }
+        
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, {width: 800, height: 480});
+        
+      }
+      
+    </script>
+    </head>
+    
+    <body>
+        <center><h1>311 Abandoned Vehicles</h1>
+        <h4>This app displays a pie chart of the 311 Abandoned Vehicles, organized by car make/model.</h4></center><br>
+        
+        <center><div id="chart_div"></div></center>
+    </body>
+</html>
