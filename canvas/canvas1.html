@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canvas 1</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <style>
+            div {
+              width: 10px;
+              height: 10px;
+              background: orange;
+              float: left;
+            }
+        </style>
+        
+    </head>
+    <body>
+        
+        <center><h1>Canvas Animation</h1><br>
+        
+        <canvas id="myCanvas" width="1000" height="500" style="border:1px solid #000000;"></canvas>
+        <p>(Try refreshing the page for different circles)</p></center>
+        
+        <script type="text/javascript">
+            var c = document.getElementById("myCanvas");
+            var ctx = c.getContext("2d");
+            var diameter = 0;
+            var i = Math.random()*10;
+            
+            function repeatOften(){
+                
+                ctx.arc(500,250,diameter,0,2*Math.PI);
+                ctx.stroke();
+                diameter += i;
+                
+                requestAnimationFrame(repeatOften);
+            }
+            requestAnimationFrame(repeatOften);
+            
+            
+            
+        
+        </script>
+        
+    </body>
+</html>
