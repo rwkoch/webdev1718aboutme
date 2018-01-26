@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Canvas 1</title>
+        <title>Canvas 1 - Robert K</title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,8 +17,65 @@
     </head>
     <body>
         
-        <center><h1>Canvas Animation</h1><br>
+        <center><h1>Introduction to Canvas</h1><br>
         
+        <h2>Part 1: Initials</h2>
+        <canvas id="newCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
+        
+        <script type="text/javascript">
+            var canvas = document.getElementById("newCanvas");
+            var context = canvas.getContext("2d");
+            
+            context.beginPath();
+            context.rect(0, 0, 400, 400);
+            
+            var gradient = context.createLinearGradient(0, 0, 400, 0);
+            gradient.addColorStop(0.01, "#00e9ff");
+            gradient.addColorStop(0.99, "#4c00ff");
+            context.fillStyle = gradient;
+            context.fill();
+            
+            context.moveTo(40, 60);
+            context.lineTo(40, 360);
+            context.lineTo(80, 360);
+            context.lineTo(80, 220);
+            context.lineTo(150, 360);
+            context.lineTo(190, 360);
+            context.lineTo(200, 360);
+            context.lineTo(240, 360);
+            context.lineTo(240, 240);
+            context.lineTo(320, 360);
+            context.lineTo(360, 360);
+            context.lineTo(260, 220);
+            context.lineTo(340, 80);
+            context.lineTo(300, 80);
+            context.lineTo(240, 180);
+            context.lineTo(240, 80);
+            context.lineTo(200, 80);
+            context.lineTo(200, 320);
+            context.lineTo(180, 320);
+            context.lineTo(120, 220);
+            context.quadraticCurveTo(220, 120, 120, 60);
+            context.lineTo(40, 60);
+            
+            context.moveTo(80, 100);
+            context.lineTo(80, 180);
+            context.quadraticCurveTo(170, 140, 100, 100);
+            
+            context.closePath();
+            
+            var newGradient = context.createLinearGradient(0, 0, 400, 400);
+            newGradient.addColorStop(0.01, "#ffbd87");
+            newGradient.addColorStop(0.99, "#ff3400");
+            context.fillStyle = newGradient;
+            context.fill();
+            
+            context.stroke();
+            
+        </script>
+        
+        
+        <h2>Part 2: Animation</h2>
         <canvas id="myCanvas" width="1000" height="500" style="border:1px solid #000000;"></canvas>
         <p>(Try refreshing the page for different circles)</p></center>
         
@@ -42,6 +99,7 @@
             
         
         </script>
+        
         
     </body>
 </html>
