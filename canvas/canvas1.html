@@ -19,6 +19,7 @@
         
         <center><h1>Introduction to Canvas</h1><br>
         
+        <!--
         <h2>Part 1: Initials</h2>
         <canvas id="newCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
         
@@ -57,11 +58,9 @@
             context.lineTo(120, 220);
             context.quadraticCurveTo(220, 120, 120, 60);
             context.lineTo(40, 60);
-            
             context.moveTo(80, 100);
             context.lineTo(80, 180);
             context.quadraticCurveTo(170, 140, 100, 100);
-            
             context.closePath();
             
             var newGradient = context.createLinearGradient(0, 0, 400, 400);
@@ -73,29 +72,97 @@
             context.stroke();
             
         </script>
-        
+        -->
         
         <h2>Part 2: Animation</h2>
         <canvas id="myCanvas" width="1000" height="500" style="border:1px solid #000000;"></canvas>
-        <p>(Try refreshing the page for different circles)</p></center>
+        <br>
+        <form>
+          <input type="radio" name="color" value="mono" id="mono" checked> Monochrome (Default)<br>
+          <input type="radio" name="color" value="gbGrad" id="gbGrad"> Green-Blue Gradient<br>
+          <input type="radio" name="color" value="prGrad" id="prGrad"> Purple-Red Gradient<br>
+        </form><br>
+        <center><button>Basic Animation</button>
+        <button id="randomButton">Random Mode</button>
+        <button id="diamGrad">Diameter Gradient Mode</button>
+        <button id="reverse">Reverse Mode</button>
+        <button id="infinite">Infinite</button></center>
+        <br><br>
         
         <script type="text/javascript">
             var c = document.getElementById("myCanvas");
             var ctx = c.getContext("2d");
             var diameter = 0;
-            var i = Math.random()*10;
+            var i = Math.random()*8+0.1;
+            var buttonVar = 0;
             
-            function repeatOften(){
+            var radial = ctx.createRadialGradient(500, 250, 0, 500, 250, 500);
+            radial.addColorStop(0, "#6eff00");
+            radial.addColorStop(0.25, "#00ff65");
+            radial.addColorStop(0.5, "#00ffed");
+            radial.addColorStop(0.75, "#007fff");
+            radial.addColorStop(1, "#3300ff");
+            
+            var purpleRed = ctx.createRadialGradient(500, 250, 0, 500, 250, 500);
+            purpleRed.addColorStop(0, "#a500ff");
+            purpleRed.addColorStop(0.5, "#ff00f6");
+            purpleRed.addColorStop(1, "#ff0000");
+            
+            
+            $("#randomButton").click(function() {
+                buttonVar = 1;
+            });
+            $("#diamGrad").click(function() {
+                i = 0.1;
+                buttonVar = 2;
+            });
+            $("#reverse").click(function() {
+                i = 7.237;
+                buttonVar = 3;
+            });
+            $("#infinite").click(function() {
+                buttonVar = 4;
+            });
+            
+            
+            
+            $("button").click(function(){
+                ctx.clearRect(0, 0, 1000, 500);
                 
-                ctx.arc(500,250,diameter,0,2*Math.PI);
-                ctx.stroke();
-                diameter += i;
-                
+                function repeatOften(){
+                    
+                    if (buttonVar == 1)
+                    {
+                    i = Math.random()*10;
+                    }
+                    
+                    if (buttonVar == 2)
+                    {
+                    i += 0.2;
+                    }
+                    
+                    if (buttonVar == 3)
+                    {
+                    i -= 0.05;
+                    }
+                    if (buttonVar == 4 && diameter >= 600)
+                    {
+                        diameter = 0;
+                        i = Math.random()*8+0.1;
+                    }
+                    
+                    if($('#gbGrad').is(':checked')) { ctx.strokeStyle = radial; }
+                    if($('#prGrad').is(':checked')) { ctx.strokeStyle = purpleRed; }
+                    
+                    ctx.arc(500,250,diameter,0,2*Math.PI);
+                    ctx.stroke();
+                    diameter += i;
+                    
+                    requestAnimationFrame(repeatOften);
+                }
                 requestAnimationFrame(repeatOften);
-            }
-            requestAnimationFrame(repeatOften);
-            
-            
+                
+            });
             
         
         </script>
