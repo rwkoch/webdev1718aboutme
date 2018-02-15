@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Canvas 1 - Robert K</title>
+        <title>Canvas 2 - Robert K</title>
         
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <style>
             div {
               width: 10px;
@@ -17,76 +18,21 @@
     </head>
     <body>
         
-        <center><h1>Introduction to Canvas</h1><br>
+        <center><h1>Canvas Animation - Robert K</h1><br>
         
-        
-        <h2>Part 1: Initials</h2>
-        <canvas id="newCanvas" width="400" height="400" style="border:1px solid #000000;"></canvas>
-        
-        <script type="text/javascript">
-            var canvas = document.getElementById("newCanvas");
-            var context = canvas.getContext("2d");
-            
-            context.beginPath();
-            context.rect(0, 0, 400, 400);
-            
-            var gradient = context.createLinearGradient(0, 0, 400, 0);
-            gradient.addColorStop(0.01, "#00e9ff");
-            gradient.addColorStop(0.99, "#4c00ff");
-            context.fillStyle = gradient;
-            context.fill();
-            
-            context.moveTo(40, 60);
-            context.lineTo(40, 360);
-            context.lineTo(80, 360);
-            context.lineTo(80, 220);
-            context.lineTo(150, 360);
-            context.lineTo(190, 360);
-            context.lineTo(200, 360);
-            context.lineTo(240, 360);
-            context.lineTo(240, 240);
-            context.lineTo(320, 360);
-            context.lineTo(360, 360);
-            context.lineTo(260, 220);
-            context.lineTo(340, 80);
-            context.lineTo(300, 80);
-            context.lineTo(240, 180);
-            context.lineTo(240, 80);
-            context.lineTo(200, 80);
-            context.lineTo(200, 320);
-            context.lineTo(180, 320);
-            context.lineTo(120, 220);
-            context.quadraticCurveTo(220, 120, 120, 60);
-            context.lineTo(40, 60);
-            context.moveTo(80, 100);
-            context.lineTo(80, 180);
-            context.quadraticCurveTo(170, 140, 100, 100);
-            context.closePath();
-            
-            var newGradient = context.createLinearGradient(0, 0, 400, 400);
-            newGradient.addColorStop(0.01, "#ffbd87");
-            newGradient.addColorStop(0.99, "#ff3400");
-            context.fillStyle = newGradient;
-            context.fill();
-            
-            context.stroke();
-            
-        </script>
-        
-        
-        <h2>Part 2: Animation</h2>
         <canvas id="myCanvas" width="1000" height="500" style="border:1px solid #000000;"></canvas>
         <br>
         <form>
           <input type="radio" name="color" value="mono" id="mono" checked> Monochrome (Default)<br>
           <input type="radio" name="color" value="gbGrad" id="gbGrad"> Green-Blue Gradient<br>
-          <input type="radio" name="color" value="prGrad" id="prGrad"> Purple-Red Gradient<br>
+          <input type="radio" name="color" value="prGrad" id="prGrad"> Purple-Red Gradient<hr>
+          <input type="checkbox" name="clear" value="clear" id="clear"> Clear Mode (clears previous circles)<hr>
         </form><br>
-        <center><button>Basic Animation</button>
-        <button id="infinite">Infinite</button>
-        <button id="randomButton">Random</button>
-        <button id="diamGrad">Diameter Gradient</button>
-        <button id="reverse">Reverse</button>
+        <center><button class="btn btn-primary">Basic Animation</button>
+        <button class="btn btn-success" id="infinite">Infinite</button>
+        <button class="btn btn-info" id="randomButton">Random</button>
+        <button class="btn btn-warning" id="diamGrad">Diameter Gradient</button>
+        <button class="btn btn-danger" id="reverse">Reverse</button>
         </center>
         <br><br>
         
@@ -128,8 +74,9 @@
             
             $("button").click(function(){
                 
-                function repeatOften(){
+                function draw(){
                     ctx.clearRect(0, 0, 1000, 500);
+                    
                     if (diameter < 0)
                     {
                         diameter = 0;
@@ -168,13 +115,14 @@
                     if($('#prGrad').is(':checked')) { ctx.strokeStyle = purpleRed; }
                     if($('#mono').is(':checked')) { ctx.strokeStyle = "#000000"; }
                     
-                    ctx.arc(500,250,diameter,0,2*Math.PI);
+                    if($('#clear').is(':checked')) { ctx.beginPath(); }
+                    ctx.arc(500, 250, diameter, 0, 2*Math.PI, true);
                     ctx.stroke();
                     diameter += i;
                     
-                    requestAnimationFrame(repeatOften);
+                    requestAnimationFrame(draw);
                 }
-                requestAnimationFrame(repeatOften);
+                requestAnimationFrame(draw);
                 
             });
             
