@@ -6,34 +6,35 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
-            div {
-              width: 10px;
-              height: 10px;
-              background: orange;
-              float: left;
-            }
-        </style>
         
     </head>
     <body>
         
-        <center><h1>Canvas Animation - Robert K</h1><br>
+        <center><h1>Final Canvas Animation - Robert K</h1><br>
         
         <canvas id="myCanvas" width="1000" height="500" style="border:1px solid #000000;"></canvas>
         <br>
+        <h4>Color Scheme</h4>
         <form>
           <input type="radio" name="color" value="mono" id="mono" checked> Monochrome (Default)<br>
           <input type="radio" name="color" value="gbGrad" id="gbGrad"> Green-Blue Gradient<br>
           <input type="radio" name="color" value="prGrad" id="prGrad"> Purple-Red Gradient<hr>
-          <input type="checkbox" name="clear" value="clear" id="clear"> Clear Mode (clears previous circles)<hr>
-        </form><br>
+          <input type="checkbox" name="clear" value="clear" id="clear"> <strong>Clear Mode</strong> (Clears previous circles)<hr>
+        </form>
+        <h4>Animation Style</h4><br>
         <center><button class="btn btn-primary">Basic Animation</button>
         <button class="btn btn-success" id="infinite">Infinite</button>
         <button class="btn btn-info" id="randomButton">Random</button>
         <button class="btn btn-warning" id="diamGrad">Diameter Gradient</button>
         <button class="btn btn-danger" id="reverse">Reverse</button>
         </center>
+        <br><br>
+        <div class="container">
+            <div class="alert alert-info alter-dismissable fade in" width="500">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  You can change the animation style, color gradient, and toggle clear mode on/off in the middle of the animation.
+            </div>
+        </div>
         <br><br>
         
         <script type="text/javascript">
