@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Brick Breaker - Robert K and Andrew T</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Brick Breaker Backup - Robert K and Andrew T</title>
         <style>
             *{
                 padding: 0;
@@ -22,15 +19,15 @@
     </head>
     <body>
         
-        <h1>Brick Breaker</h1>
-        <h6>Robert K and Andrew T</h6>
         <canvas id="myCanvas" width="480" height="320" style="border:1px solid #000000;"></canvas>
+
         
         <script>
-        
             var canvas=document.getElementById("myCanvas");
             var ctx = canvas.getContext("2d");
             var ballRadius=10;
+            //to move
+            
             var x=canvas.width/2;
             var y=canvas.height-30;
             var dx=2;
@@ -44,19 +41,18 @@
             var brickColumnCount = 5;
             var brickWidth = 75;
             var brickHeight = 20;
-            var brickPadding = 10;          
+            var brickPadding = 10;
             var brickOffsetTop = 30;
             var brickOffsetLeft = 30;
             var score = 0;
-            var lives = 3;
-            var color="blue";
             document.addEventListener("keydown",keyDownHandler,false);
             document.addEventListener("keyup",keyUpHandler,false);
+            
             var bricks = [];
             for(var c=0; c<brickColumnCount; c++) {
                 bricks[c] = [];
                 for(var r=0; r<brickRowCount; r++) {
-                     bricks[c][r] = { x: 0, y: 0, status: 2 };
+                     bricks[c][r] = { x: 0, y: 0, status: 1 };
                 }
             }
             
@@ -113,7 +109,7 @@
                             bricks[c][r].y = brickY;
                             ctx.beginPath();
                             ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                            ctx.fillStyle = color;
+                            ctx.fillStyle = "#0095DD";
                             ctx.fill();
                             ctx.closePath();
                         }
@@ -127,10 +123,9 @@
                         var b = bricks[c][r];
                         if(b.status == 1) {
                             if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
-                                dy=-dy;
+                                dy = -dy;
                                 b.status = 0;
                                 score++;
-                                color='#'+(Math.random()*0xFFFFFF<<0).toString(16);
                             }
                         }
                     }
@@ -148,21 +143,13 @@
             	ctx.fillStyle = 'blue';
             	ctx.fillText('Score: ' + score, 8, 20);
             }
-            
-            function drawLives(){
-                ctx.font = '16px Arial';
-                ctx.fillStyle = 'blue';
-            	ctx.fillText('Lives: ' + lives, 400, 20);
-            }
-            
             function draw(){
-            	ctx.clearRect(0,0,canvas.width,canvas.height); 
+            	ctx.clearRect(0,0,canvas.width,canvas.height);
+            	drawBricks();
             	drawBall();
             	drawPaddle();
             	collisionDetection();
             	drawScore();
-            	drawLives();
-            	drawBricks();
              	x += dx;
             	y += dy;
             	if(x + dx > canvas.width - ballRadius || x + dx < ballRadius){
@@ -172,39 +159,11 @@
                 	dy = -dy;
                 } else if(y + dy > canvas.height - ballRadius) {
                 	if(x > paddleX && x < paddleX + paddleWidth) {
-                	    if(x>paddleX+paddleWidth/2){
-                	        if(x>paddleX+paddleWidth*.75){
-                	            dx=Math.abs(dx);
-                	        }
-                	        else{
-                	            dx= Math.abs(dx)<2 ?  2 : Math.abs(dx/2);
-                	        }
-                	    }
-                	    else if(x<paddleX+paddleWidth/2){
-                	        if(x<paddleX+paddleWidth*.25){
-                	            dx=-Math.abs(dx);
-                	        }
-                	        else{
-                	            dx= Math.abs(dx)<2 ?  -2 : -Math.abs(dx/2);
-                	        }
-                	    }
-                	    else if(x==(paddleX+paddleWidth)/2){
-                	        dx=0;
-                	    }
                 		dy = -dy;
-                	} 
-                	else{
-                	    dy= -dy;
-                		alert("Continue?");
-                    	x=canvas.width/2;
-                        y=canvas.height-30;
-                    	lives--;
-                    	if (lives < 0)
-                    	{
-                    	    alert("You ran out of lives");
-                    	    document.location.reload();
-                    	    
-                    	}
+                	} else{
+                	    dy= -dy
+                		alert('game over');
+                    	document.location.reload();
                 	}
                 }
                 if(rightPressed && paddleX < canvas.width-paddleWidth){
@@ -217,7 +176,7 @@
             
             setInterval(draw,10);
 
-            
+
         </script>
 
         
