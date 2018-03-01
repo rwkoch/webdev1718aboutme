@@ -24,7 +24,9 @@
         
         <h1>Brick Breaker 2: Gravity</h1>
         <h6>Robert K and Andrew T</h6>
-        <canvas id="myCanvas" width="480" height="320" style="border:1px solid #000000;"></canvas>
+        <canvas id="myCanvas" width="480" height="320" style="border:1px solid #000000;"></canvas><br>
+        <p>Control the paddle using the mouse.</p>
+        <a href="BrickBreaker.html"><button>Brick Breaker 1</button></a>
         
         <script>
         
@@ -33,7 +35,6 @@
             var ballRadius=10;
             var x=canvas.width/2;
             var y=canvas.height-30;
-            var weight=1;
             var dx=2;
             var dy= -5;
             var gravity=(9.81)/100;
@@ -94,7 +95,8 @@
             
             function drawPaddle(){
             	ctx.beginPath();
-            	ctx.rect(paddleX,canvas.height-paddleHeight,paddleWidth,paddleHeight);
+            	ctx.rect(paddleX-(paddleWidth/2),canvas.height-paddleHeight,paddleWidth/1.5,paddleHeight);
+            	ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth/1.5, paddleHeight);
             	ctx.fillstyle="#0095DD";
             	ctx.fill();
             	ctx.closePath();
@@ -168,25 +170,22 @@
             	if(y + dy < ballRadius){
                 	dy = -dy;
                 } else if(y + dy >=canvas.height) {
-                	if(x >= paddleX - 1 && x <= paddleX + paddleWidth + 1) {
+                	if(x >= paddleX - (paddleWidth/2) && x <= paddleX + paddleWidth + 1) {
                 	    if(x>paddleX+paddleWidth/2){
-                	        if(x>paddleX+paddleWidth*.75){
+                	        if(x>paddleX){
                 	            dx=Math.abs(dx);
                 	        }
                 	        else{
                 	            dx= Math.abs(dx)<2 ?  2 : Math.abs(dx/2);
                 	        }
                 	    }
-                	    else if(x<paddleX+paddleWidth/2){
+                	    else if(x<paddleX){
                 	        if(x<paddleX+paddleWidth*.25){
                 	            dx=-Math.abs(dx);
                 	        }
                 	        else{
                 	            dx= Math.abs(dx)<2 ?  -2 : -Math.abs(dx/2);
                 	        }
-                	    }
-                	    else if(x==(paddleX+paddleWidth)/2){
-                	        dx=0;
                 	    }
                 		dy = -dy;
                 	} 

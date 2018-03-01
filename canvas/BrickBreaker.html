@@ -24,7 +24,9 @@
         
         <h1>Brick Breaker</h1>
         <h6>Robert K and Andrew T</h6>
-        <canvas id="myCanvas" width="480" height="320" style="border:1px solid #000000;"></canvas>
+        <canvas id="myCanvas" width="480" height="320" style="border:1px solid #000000;"></canvas><br>
+        <p>Control the paddle using the arrow keys.</p>
+        <a href="BrickBreaker.2.html"><button>Brick Breaker 2</button></a>
         
         <script>
         
@@ -56,7 +58,7 @@
             for(var c=0; c<brickColumnCount; c++) {
                 bricks[c] = [];
                 for(var r=0; r<brickRowCount; r++) {
-                     bricks[c][r] = { x: 0, y: 0, status: 2 };
+                     bricks[c][r] = { x: 0, y: 0, status: 1 };
                 }
             }
             
@@ -106,6 +108,7 @@
             function drawBricks() {
                 for(var c=0; c<brickColumnCount; c++) {
                     for(var r=0; r<brickRowCount; r++) {
+                        
                         if(bricks[c][r].status == 1) {
                             var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
                             var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
@@ -125,11 +128,11 @@
                 for(var c=0; c<brickColumnCount; c++) {
                     for(var r=0; r<brickRowCount; r++) {
                         var b = bricks[c][r];
-                        if(b.status == 1) {
+                        if(b.status > 0 ) {
                             if(x > b.x && x < b.x+brickWidth && y > b.y && y < b.y+brickHeight) {
                                 dy=-dy;
-                                b.status = 0;
-                                score++;
+                                b.status--;
+                                score=b.status==0 ? score+1 : score;
                                 color='#'+(Math.random()*0xFFFFFF<<0).toString(16);
                             }
                         }
