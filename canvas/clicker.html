@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Clicker Game</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            canvas{
+                background-color: #eee;
+                display: "block";
+                margin: 0 auto;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="500" height="500" style="border:1px solid #000000;"></canvas><br>
+
+        <script>
+            var canvas=document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            var lives = 3;
+            var score = 0;
+            var circleX = 250;
+            var circleY = 350;
+            
+            var img = new Image();
+            img.src = 'https://i.ytimg.com/vi/fOl6TUPTcO8/maxresdefault.jpg';
+            var img2 = new Image();
+            img2.src = 'https://wi-images.condecdn.net/image/6DoWNVJlrWM/crop/2040/f/black-hole.jpg';
+            var img3 = new Image();
+            img3.src = 'https://i.ytimg.com/vi/lt0WQ8JzLz4/maxresdefault.jpg';
+            var img4 = new Image();
+            img4.src = 'https://www.itsdiscovery.com/wp-content/uploads/2017/09/maxresdefault.jpg';
+            var img5 = new Image();
+            img5.src = 'https://lh3.googleusercontent.com/ObxqNrt8MK205j9lFAmQXPeQVv23rBa49EffU5tOZXrl5Z4i_hcZ6Nt8KSyBrWTBug=w170';
+            
+            function drawScore(){
+            	ctx.font = '16px Arial';
+            	ctx.fillStyle = 'black';
+            	ctx.fillText('Score: ' + score, 8, 20);
+            }
+            
+            function drawLives(){
+                ctx.font = '16px Arial';
+                ctx.fillStyle = 'red';
+            	ctx.fillText('Lives: ' + lives, 440, 20);
+            }
+            
+            function drawCircles(){
+                ctx.beginPath();
+                ctx.arc(circleX, circleY, 75, 0, 2*Math.PI);
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.drawImage(img5, circleX-85, circleY-85);
+                ctx.closePath();
+            }
+            
+            function drawTitle(){
+                ctx.drawImage(img4, 0, 0);
+                ctx.font = '40px Arial';
+                ctx.fillStyle = 'blue';
+                ctx.fillText('Clicker Game', 125, 200);
+                ctx.font = '30px Arial';
+                ctx.fillText('click the earth to begin', 100, 250);
+            }
+            
+            $("#myCanvas").click(function(){
+                ctx.beginPath();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.closePath();
+                ctx.drawImage(img, 0, 25);
+                
+                
+                if (score >= 20)
+                {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img3, 0, 0);
+                    ctx.font = '40px Arial';
+                    ctx.fillStyle = 'white';
+                    ctx.fillText('You win!', 150, 250);
+                    $("#myCanvas").click(function(){
+                        location.reload();
+                    });
+                }
+                if (lives <= 1)
+                {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img2, 0, 0);
+                    ctx.font = '40px Arial';
+                    ctx.fillStyle = 'red';
+                    ctx.fillText('Game over', 150, 250);
+                    $("#myCanvas").click(function(){
+                        location.reload();
+                    });
+                }
+                
+                var x = event.clientX;
+                var y = event.clientY;
+                
+                console.log("X: " + x + " Y: " + y + " CircleX: " + circleX + " CircleY: " + circleY);
+                
+                if (x >= circleX-80 && x <= circleX+80 && y >= circleY-80 && y <= circleY+80)
+                {
+                    score++;
+                    
+                }
+                else
+                {
+                    lives--;
+                }
+                
+                if (score <= 21 && lives >= 0)
+                {
+                    drawScore();
+                    drawLives();
+                }
+                
+                circleX = Math.random()*500;
+                circleY = Math.random()*500;
+                drawCircles();
+                
+            });
+            drawTitle();
+            drawCircles();
+
+        </script>
+    </body>
+</html>
