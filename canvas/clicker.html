@@ -30,6 +30,7 @@
     <i class="material-icons" style="display: inline-block">timer</i>
     <p style="display: inline-block">Time Remaining:</p>
     <p id="timer" style="color:blue;font-size:50px"></p>
+    <hr>
     <button class="btn btn-success" id="easy">Easy</button>
     <button class="btn btn-warning" id="med">Medium</button>
     <button class="btn btn-danger" id="hard">Hard</button>
@@ -78,7 +79,7 @@
             if (gameStart == true && gameEnd == false) {
                 timeRemaining--;
             }
-            if (timeRemaining == -1 && gameEnd == false) {
+            if (timeRemaining <= -1 && gameEnd == false) {
                 gameOver();
                 document.getElementById("timer").innerHTML = "Time's up";
             }
