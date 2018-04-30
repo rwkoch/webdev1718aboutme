@@ -35,8 +35,8 @@
         </div>
         <!--
         <ul class="nav header-right">
-            <li><a href="#" class="navlinko">Neighborhoods</a></li>
-            <li><a href="#" class="navlinko">???</a></li>
+            <li><a href="#" class="navlinko w3-padding-16">Neighborhoods</a></li>
+            <li><a href="#" class="navlinko w3-padding-16">???</a></li>
         </ul>
         -->
     </header>
@@ -96,11 +96,33 @@
     </div>
     <br><br>
 
+    <script>
+        var neighborhoodArray = ["Armour Square", "Avondale", "Douglas", "Dunning", "Edgewater", "Hyde Park"];
+
+        var input = document.getElementById("input").value;
+
+        function checkNeighborhood() {
+            for (var i = 0; i < neighborhoodArray.length; i++) {
+                if (neighborhoodArray[i] == input) {
+                    return neighborhoodArray[i];
+                }
+            }
+        }
+
+        function myFunction() {
+            document.getElementById("results").innerHTML = neighborhoodArray.find(checkNeighborhood);
+        }
+    </script>
+
     <div class="container">
         <div class="col-sm-4">
             <center>
                 <p>Work in Progress:</p>
-                <input type="text" class="form" placeholder="Search Neighborhoods">
+                <input type="text" class="form" placeholder="Search Neighborhoods" id="input">
+                <button onclick="myFunction()">Search</button>
+                <span id="results">
+                    
+                </span>
             </center>
         </div>
     </div>
