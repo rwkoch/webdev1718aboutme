@@ -32,13 +32,6 @@
 <body>
     <header class="toppingheader">
         <img src="nweblogo.png" width="150px">
-        </div>
-        <!--
-        <ul class="nav header-right">
-            <li><a href="#" class="navlinko w3-padding-16">Neighborhoods</a></li>
-            <li><a href="#" class="navlinko w3-padding-16">???</a></li>
-        </ul>
-        -->
     </header>
     <br><br>
     <div class="container">
@@ -96,38 +89,43 @@
     </div>
     <br><br>
 
-    <script>
-        var neighborhoodArray = ["Armour Square", "Avondale", "Douglas", "Dunning", "Edgewater", "Hyde Park"];
-
-        var input = document.getElementById("input").value;
-
-        function checkNeighborhood() {
-            for (var i = 0; i < neighborhoodArray.length; i++) {
-                if (neighborhoodArray[i] == input) {
-                    return neighborhoodArray[i];
-                }
-            }
-        }
-
-        function myFunction() {
-            document.getElementById("results").innerHTML = neighborhoodArray.find(checkNeighborhood);
-        }
-    </script>
-
     <div class="container">
         <div class="col-sm-4">
             <center>
-                <p>Work in Progress:</p>
-                <input type="text" class="form" placeholder="Search Neighborhoods" id="input">
-                <button onclick="myFunction()">Search</button>
-                <span id="results">
-                    
+                <input type="text" class="form" placeholder="Search Neighborhoods" id="textEnter">
+                <button id="searchButton" class="btn btn-info">Search</button>
+                <br><br>
+                <div class="list-group">
+                    <span id="results">
                 </span>
             </center>
+            </div>
         </div>
     </div>
 
+    <script>
+        var neighborhoodArray = ["Index.html", "armour square", "armourSquare.html", "avondale", "avondale.html", "douglas", "douglas.html", "dunning", "dunning.html", "edgewater", "edgewater.html", "hyde park", "hydepark.html", "irving park", "irvingpark.html", "jefferson park", "jeffersonPark.html", "lakeview", "lakeview.html", "lincoln park", "lincolnPark.html", "lincoln square", "lincolnSquare.html", "Logan Square", "loop", "loop.html", "near north side", "nearNorthSide.html", "near west side", "nearwestside.html", "north center", "northCenter.html", "norwood park", "norwoodPark.html", "portage park", "portagepark.html", "rogers park", "rogersPark.html", "sauganash", "sauganash.html", "uptown", "uptown.html", "washington park", "washingtonpark.html", "west ridge", "westRidge.html", "west town", "westTown.html"];
+        var html;
 
+        function searchArray(input) {
+            input = input.toLowerCase();
+            var pos = neighborhoodArray.indexOf(input);
+            if (pos >= 0) {
+                html += "<a href='" + neighborhoodArray[pos + 1] + "' class='list-group-item'>" + neighborhoodArray[pos] + "</a>";
+            }
+            else if (pos == -1) {
+                html += "<p>No Results Found</p>"
+            }
+            $("#results").append(html);
+        }
+
+        $("button").click(function() {
+            console.log("Button pressed");
+            var entry = document.getElementById("textEnter").value;
+            console.log(entry);
+            searchArray(entry);
+        });
+    </script>
 
 
 </body>
