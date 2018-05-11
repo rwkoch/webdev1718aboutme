@@ -37,11 +37,16 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <iframe width=600 title="Boundaries - Community Areas (current)" height=600 src="https://data.cityofchicago.org/w/cauq-8yn6/3q3f-6823?cur=C-E4muDl_WK&from=root" frameborder="0" scrolling="no"><a href="https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6" title="Boundaries - Community Areas (current)" target="_blank">Boundaries - Community Areas (current)</a>
+                <iframe width=600 title="Boundaries - Community Areas (current)" height=630 src="https://data.cityofchicago.org/w/cauq-8yn6/3q3f-6823?cur=C-E4muDl_WK&from=root" frameborder="0" scrolling="no"><a href="https://data.cityofchicago.org/Facilities-Geographic-Boundaries/Boundaries-Community-Areas-current-/cauq-8yn6" title="Boundaries - Community Areas (current)" target="_blank">Boundaries - Community Areas (current)</a>
             </iframe>
             </div>
             <div class="col-sm-6">
                 <center>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Welcome to the Chicago Neighborhood Lookup App</div>
+                        <div class="panel-body">Begin by exploring the neighborhood map to the left or selecting a popular neighborhood below. You can also search for a neighborhood or select one from the dropdown menu. Each neighborhood profile has a map with historical landmarks,
+                            points of interest, statistics, and a general description of the neighborhood.</div>
+                    </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading">Popular Neighborhoods</div>
                         <div class="panel-body">
@@ -69,9 +74,6 @@
                             <a href="irvingpark.html">
                                 <p>Irving Park</p>
                             </a>
-                            <a href="loganSquare.html">
-                                <p>Logan Square</p>
-                            </a>
                             <a href="northCenter.html">
                                 <p>North Center</p>
                             </a>
@@ -83,43 +85,101 @@
                             </a>
                         </div>
                     </div>
+
                 </center>
             </div>
         </div>
     </div>
-    <br><br>
+    <br>
+    <center>
+        <h3>Search for a Neighborhood or select one from the dropdown menu:</h3>
+    </center>
 
+    <br><br>
     <div class="container">
-        <div class="col-sm-4">
-            <center>
-                <input type="text" class="form" placeholder="Search Neighborhoods" id="textEnter">
-                <button id="searchButton" class="btn btn-info">Search</button>
-                <br><br>
-                <div class="list-group">
-                    <span id="results">
+        <div clas="row">
+            <div class="col-sm-6">
+                <center>
+                    <input type="text" class="form" placeholder="Search Neighborhoods" id="textEnter">
+                    <button id="searchButton" class="btn btn-info">Search</button>
+                    <br><br>
+                    <div class="list-group">
+                        <span id="results">
                 </span>
-            </center>
+                </center>
+                </div>
+            </div>
+            <div class="col-sm-6">
+
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select a Neighborhood
+  <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <span id="dropdownResults">
+                            
+                        </span>
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
+    <br><br><br>
 
     <script>
-        var neighborhoodArray = ["Index.html", "armour square", "armourSquare.html", "avondale", "avondale.html", "douglas", "douglas.html", "dunning", "dunning.html", "edgewater", "edgewater.html", "hyde park", "hydepark.html", "irving park", "irvingpark.html", "jefferson park", "jeffersonPark.html", "lakeview", "lakeview.html", "lincoln park", "lincolnPark.html", "lincoln square", "lincolnSquare.html", "Logan Square", "loop", "loop.html", "near north side", "nearNorthSide.html", "near west side", "nearwestside.html", "north center", "northCenter.html", "norwood park", "norwoodPark.html", "portage park", "portagepark.html", "rogers park", "rogersPark.html", "sauganash", "sauganash.html", "uptown", "uptown.html", "washington park", "washingtonpark.html", "west ridge", "westRidge.html", "west town", "westTown.html"];
-        var html;
+        var neighborhoodArray = ["Index.html",
+            "albany park", "albanypark.html",
+            "archer heights", "archerheights.html",
+            "armour square", "armourSquare.html",
+            "ashburn", "ashburn.html",
+            "avondale", "avondale.html",
+            "beverly", "beverly.html",
+            "douglas", "douglas.html",
+            "dunning", "dunning.html",
+            "edgewater", "edgewater.html",
+            "hyde park", "hydepark.html",
+            "irving park", "irvingpark.html",
+            "jefferson park", "jeffersonPark.html",
+            "lakeview", "lakeview.html",
+            "lincoln park", "lincolnPark.html",
+            "lincoln square", "lincolnSquare.html",
+            "logan square", "loganSquare.html",
+            "loop", "loop.html",
+            "near north side", "nearNorthSide.html",
+            "near west side", "nearwestside.html",
+            "north center", "northCenter.html",
+            "norwood park", "norwoodPark.html",
+            "ohare", "ohare.html",
+            "portage park", "portagepark.html",
+            "rogers park", "rogersPark.html",
+            "sauganash", "sauganash.html",
+            "uptown", "uptown.html",
+            "washington park", "washingtonpark.html",
+            "west ridge", "westRidge.html",
+            "west town", "westTown.html"
+        ];
+        var html = "";
+
+        for (var i = 1; i < neighborhoodArray.length; i += 2) {
+            html = "<li><a href='" + neighborhoodArray[i + 1] + "'>" + neighborhoodArray[i] + "</a></li>";
+            $("#dropdownResults").append(html);
+        }
 
         function searchArray(input) {
+            html = "";
             input = input.toLowerCase();
             var pos = neighborhoodArray.indexOf(input);
             if (pos >= 0) {
                 html += "<a href='" + neighborhoodArray[pos + 1] + "' class='list-group-item'>" + neighborhoodArray[pos] + "</a>";
             }
             else if (pos == -1) {
-                html += "<p>No Results Found</p>"
+                html += "<p>No Results Found</p>";
             }
+            $("#results").empty();
             $("#results").append(html);
         }
 
-        $("button").click(function() {
+        $("#searchButton").click(function() {
             console.log("Button pressed");
             var entry = document.getElementById("textEnter").value;
             console.log(entry);
