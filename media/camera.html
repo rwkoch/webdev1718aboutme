@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Camera App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <h1>Camera App</h1>
+    <video id="player" controls autoplay></video>
+    <button class="btn btn-primary" id="capture">Capture</button>
+    <canvas id="canvas" width=320 height=240></canvas>
+    <hr>
+    <h3>Album:</h3>
+    <div id="images"></div>
+
+    <script type="text/javascript">
+        const player = document.getElementById('player');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+        const captureButton = document.getElementById('capture');
+        var album = document.getElementById("images");
+
+        const constraints = {
+            video: true
+        };
+
+        captureButton.addEventListener('click', () => {
+            var currentImage = document.createElement("img");
+            context.drawImage(player, 0, 0, canvas.width, canvas.height);
+            currentImage.setAttribute("src", canvas.toDataURL());
+            album.appendChild(currentImage);
+        });
+
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then((stream) => {
+                player.srcObject = stream;
+            });
+    </script>
+</body>
+
+</html>
