@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Device APIs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/maps/documentation/javascript/cgc/demos.css">
+
+</head>
+
+<body>
+    <h1>Location</h1>
+
+    <h4>Latitude:</h4>
+    <span id="startLat"></span>
+
+    <h4>Longitude:</h4>
+    <span id="startLon"></span>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            var startPos;
+            var geoSuccess = function(position) {
+                startPos = position;
+                document.getElementById('startLat').innerHTML = startPos.coords.latitude;
+                document.getElementById('startLon').innerHTML = startPos.coords.longitude;
+            };
+            navigator.geolocation.getCurrentPosition(geoSuccess);
+        };
+    </script>
+
+    <hr>
+    <h1>Rotation</h1>
+
+    <h4>Alpha:</h4>
+    <span id="alpha"></span>
+    <h4>Beta:</h4>
+    <span id="beta"></span>
+    <h4>Gamma:</h4>
+    <span id="gamma"></span>
+
+    <script>
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener('deviceorientation', deviceOrientationHandler, false);
+            var x = window.DeviceOrientationEvent.alpha;
+            var y = window.DeviceOrientationEvent.beta;
+            var z = window.DeviceOrientationEvent.gamma;
+            document.getElementById('alpha').innerHTML = x;
+            document.getElementById('beta').innerHTML = y;
+            document.getElementById('gamma').innerHTML = z;
+        }
+    </script>
+
+
+    <hr>
+    <button id="goFS" class="btn btn-primary">Go fullscreen</button>
+
+    <script type="text/javascript">
+        var goFS = document.getElementById("goFS");
+        goFS.addEventListener("click", function() {
+
+            var doc = window.document;
+            var docEl = doc.documentElement;
+
+            var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
+            var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen;
+
+            if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+                requestFullScreen.call(docEl);
+            }
+            else {
+                cancelFullScreen.call(doc);
+            }
+
+        }, false);
+    </script>
+
+
+
+    <hr>
+    <h4>AT&T Customer Service</h4>
+    <a href="tel:+1-800-331-0500">1 (800) 331-0500</a>
+
+
+    <div id="map"></div>
+    <script type="text/javascript">
+        function initMap() {
+            var myLatLng = { lat: -25.363, lng: 131.044 };
+
+            // Create a map object and specify the DOM element
+            // for display.
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: myLatLng,
+                zoom: 4
+            });
+
+            // Create a marker and set its position.
+            var marker = new google.maps.Marker({
+                map: map,
+                position: myLatLng,
+                title: 'Hello World!'
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDTN46ExouYC1Mr_zIyoEhR37uWW_CC-Y&callback=initMap">
+    </script>
+
+
+</body>
+
+</html>
